@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
+        <Grid.Effect>
+            <DropShadowEffect Direction="275" BlurRadius="20" Opacity="0.5"/>
+        </Grid.Effect>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="484*"/>
             <ColumnDefinition Width="309*"/>
@@ -21,6 +24,8 @@
         <TextBlock HorizontalAlignment="Left" Margin="155,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="&lt; eg fps, rpg sports ect"/><LineBreak/><Run/></TextBlock>
         <Image x:Name="ImgCover" Grid.Column="1" HorizontalAlignment="Left" Height="234" Margin="68,43,0,0" VerticalAlignment="Top" Width="181"/>
         <TextBox x:Name="txtReview" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="85" Margin="433,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <TextBox HorizontalAlignment="Left" Height="22" Margin="155,299,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="123"/>
+        <TextBox HorizontalAlignment="Left" Height="22" Margin="155,272,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="123"/>
 
     </Grid>
 </Window>
