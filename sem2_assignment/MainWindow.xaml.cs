@@ -30,11 +30,16 @@ namespace sem2_assignment
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            string[] genres = { "All", "Fps","Looter", "Rts", "Survival", "Rpg" };
+            CbxGenre.ItemsSource = genres;
+
             //puts the games into an array
             AllGames = GetGames();
 
-
+            //sets the source for the list box to the games
             LbxGames.ItemsSource = AllGames;
+
+           
         }
         // creating the bands.
         private Games[] GetGames()
@@ -64,6 +69,21 @@ namespace sem2_assignment
 
             Games[] GamesCreated = { f1, f2, l1, l2, r1, r2, s1, s2, rp1, rp2 };
             return GamesCreated;
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // null check
+            if(LbxGames.SelectedItem != null)
+            {
+                Games selectedgame = LbxGames.SelectedItem as Games;
+            }
+        }
+        
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
