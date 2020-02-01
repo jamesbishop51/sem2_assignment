@@ -15,20 +15,19 @@
             <ColumnDefinition Width="77*"/>
             <ColumnDefinition Width="309*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="LbxGames" HorizontalAlignment="Left" Height="290" Margin="10,121,0,0" VerticalAlignment="Top" Width="152" SelectionChanged="ListBox_SelectionChanged"/>
-        <ComboBox x:Name="CbxGenre" HorizontalAlignment="Left" Height="18" Margin="10,98,0,0" VerticalAlignment="Top" Width="152"/>
+        <ListBox x:Name="LbxGames" HorizontalAlignment="Left" Height="290" Margin="10,121,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="ListBox_SelectionChanged"/>
+        <ComboBox x:Name="CbxGenre" HorizontalAlignment="Left" Height="22" Margin="10,94,0,0" VerticalAlignment="Top" Width="173" SelectedIndex="0"/>
         <TextBlock HorizontalAlignment="Left" Height="17" Margin="355,10,0,0" TextWrapping="Wrap" Text="Game reviews" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="TxtDescription" HorizontalAlignment="Left" Height="85" Margin="167,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" TextChanged="TextBox_TextChanged"/>
-        <TextBlock HorizontalAlignment="Left" Margin="167,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="&lt; all games"/><LineBreak/><Run Text="(this will be removed)"/><LineBreak/><Run/></TextBlock>
+        <TextBox x:Name="TxtDescription" HorizontalAlignment="Left" Height="129" Margin="188,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" TextChanged="TextBox_TextChanged" Grid.ColumnSpan="2"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,78,0,0" TextWrapping="Wrap" Text="Game Genre" VerticalAlignment="Top" Width="66"/>
         <TextBox x:Name="txtReviewer" HorizontalAlignment="Left" Height="39" Margin="25.667,282,0,0" TextWrapping="Wrap" Text="." VerticalAlignment="Top" Width="182" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="167,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="&lt; eg fps, rpg sports ect"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="202,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="&lt; eg fps, rpg sports ect"/><LineBreak/><Run/></TextBlock>
         <Image x:Name="ImgCover" Grid.Column="2" HorizontalAlignment="Left" Height="234" Margin="118,43,0,0" VerticalAlignment="Top" Width="181"/>
         <TextBox x:Name="txtReview" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="85" Margin="26,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" Grid.Column="1"/>
-        <TextBox x:Name="TxtRelease" HorizontalAlignment="Left" Height="22" Margin="167,299,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="123"/>
-        <TextBox x:Name="TxtSales" HorizontalAlignment="Left" Height="22" Margin="167,272,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="123"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="5" Margin="136,294,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="0"/>
         <TextBox x:Name="TxtReviewDate" Grid.Column="2" HorizontalAlignment="Left" Height="39" Margin="135.634,282,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="163"/>
+        <TextBlock x:Name="TxtReleased" HorizontalAlignment="Left" Height="22" Margin="188,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" Grid.ColumnSpan="2"><Run Text="R"/><Run Text="elease Date"/><Run Text=": "/></TextBlock>
+        <TextBlock x:Name="txtSales" HorizontalAlignment="Left" Height="22" Margin="188,231,0,0" TextWrapping="Wrap" Text="Total Sales:" VerticalAlignment="Top" Width="240" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

@@ -36,6 +36,8 @@ namespace sem2_assignment
             //puts the games into an array
             AllGames = GetGames();
 
+            Array.Sort(AllGames);
+
             //sets the source for the list box to the games
             LbxGames.ItemsSource = AllGames;
 
@@ -76,7 +78,12 @@ namespace sem2_assignment
             // null check
             if(LbxGames.SelectedItem != null)
             {
+                //gets the selected game
                 Games selectedgame = LbxGames.SelectedItem as Games;
+
+                txtSales.Text = "Total Sales: " + selectedgame.Sales;
+                TxtReleased.Text = "Release Date: " + selectedgame.Released;
+                TxtDescription.Text = selectedgame.Description;
             }
         }
         

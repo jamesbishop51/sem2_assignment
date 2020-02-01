@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace sem2_assignment
 {
-    abstract class Games 
+    abstract class Games : IComparable
     {
         #region props
         public string Name { get; set; }
@@ -23,10 +23,15 @@ namespace sem2_assignment
         {
             return string.Format($"{Name}");
         }
-        //public int CompareTo(Object obj)
-        //{
-
-        //}
+        public int CompareTo(Object obj)
+        {
+            if (obj == null) return 1;
+            Games games = obj as Games;
+            if (games != null)
+                return this.Name.CompareTo(games.Name);
+            else
+                throw new ArgumentException("");
+        }
         #endregion methods
     }
     #region AbstractClasses

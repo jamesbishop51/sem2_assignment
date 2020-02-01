@@ -18,5 +18,9 @@ namespace sem2_assignment
         #region methods
 
         #endregion methods
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }
