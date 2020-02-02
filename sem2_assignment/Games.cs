@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace sem2_assignment
 {
@@ -13,6 +16,16 @@ namespace sem2_assignment
         public DateTime Released { get; set; }
         public int Sales { get; set; }
         public string Description { get; set; }
+
+        public Reviews[] review { get; set; }
+
+
+        public string[] Cover { get; set; }
+
+        //these are props that i tried to use for the cover images
+        //public System.Windows.Media.ImageSource Cover { get; set; }
+        //public BitmapImage Cover { get; set; }
+
         #endregion props
         #region ctor
         #endregion ctor
