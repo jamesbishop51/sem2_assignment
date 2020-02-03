@@ -12,11 +12,17 @@ namespace sem2_assignment
         public string Name { get; set; }
         public DateTime ReviewDate { get; set; }
         public string Review { get; set; }
+
+        public int score { get; set; }
         #endregion props
         #region ctor
         #endregion ctor
         #region methods
 
         #endregion methods
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }
