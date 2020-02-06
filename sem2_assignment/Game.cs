@@ -9,24 +9,32 @@ using System.Windows.Media.Imaging;
 
 namespace sem2_assignment
 {
-    abstract class Games : IComparable
+    abstract class Game : IComparable
     {
         #region props
         public string Name { get; set; }
         public DateTime Released { get; set; }
-        public int Sales { get; set; }
+        public double Sales { get; set; }
         public string Description { get; set; }
 
-        public Reviews[] review { get; set; }
+        public Review[] review { get; set; }
+
+        public string GameImg { get; set; }
 
 
-        public string[] Cover { get; set; }
+
 
         //these are props that i tried to use for the cover images
         //public System.Windows.Media.ImageSource Cover { get; set; }
         //public BitmapImage Cover { get; set; }
+        //public string[] Cover { get; set; }
 
         #endregion props
+        public Game()
+        {
+            review = new Review[20];
+        }
+
         #region ctor
         #endregion ctor
         #region methods
@@ -39,7 +47,7 @@ namespace sem2_assignment
         public int CompareTo(Object obj)
         {
             if (obj == null) return 1;
-            Games games = obj as Games;
+            Game games = obj as Game;
             if (games != null)
                 return this.Name.CompareTo(games.Name);
             else
@@ -48,23 +56,23 @@ namespace sem2_assignment
         #endregion methods
     }
     #region AbstractClasses
-    class FpsGame : Games
+    class FpsGame : Game
     {
 
     }
-    class LooterGame : Games
+    class LooterGame : Game
     {
 
     }
-    class RtsGame : Games
+    class RtsGame : Game
     {
 
     }
-    class SurvivalGames : Games
+    class SurvivalGames : Game
     {
 
     }
-    class RpgGame : Games
+    class RpgGame : Game
     {
 
     }

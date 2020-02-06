@@ -20,15 +20,15 @@
         <TextBlock HorizontalAlignment="Left" Height="17" Margin="355,10,0,0" TextWrapping="Wrap" Text="Game reviews" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="2"/>
         <TextBox x:Name="TxtDescription" HorizontalAlignment="Left" Height="129" Margin="188,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" TextChanged="TextBox_TextChanged" Grid.ColumnSpan="2"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,78,0,0" TextWrapping="Wrap" Text="Game Genre" VerticalAlignment="Top" Width="66"/>
-        <TextBox x:Name="txtReviewer" HorizontalAlignment="Left" Height="24" Margin="25.667,282,0,0" TextWrapping="Wrap" Text="Review by:" VerticalAlignment="Top" Width="147" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <TextBox x:Name="txtReviewer" HorizontalAlignment="Left" Height="75" Margin="25.667,231,0,0" TextWrapping="Wrap" Text="Review by:" VerticalAlignment="Top" Width="147" Grid.ColumnSpan="2" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Left" Margin="202,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="&lt; eg fps, rpg sports ect"/><LineBreak/><Run/></TextBlock>
-        <Image x:Name="ImgCover" Grid.Column="2" HorizontalAlignment="Left" Height="234" Margin="118,43,0,0" VerticalAlignment="Top" Width="181" Loaded="ImgCover_Loaded"/>
+        <Image x:Name="ImgCover" Grid.Column="2" HorizontalAlignment="Left" Height="103" Margin="118.634,43,0,0" VerticalAlignment="Top" Width="181" Loaded="ImgCover_Loaded"/>
         <TextBox x:Name="txtReview" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="99" Margin="25.667,312,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" Grid.Column="1"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="5" Margin="136,294,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="0"/>
-        <TextBox x:Name="TxtReviewDate" Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="100.634,282,0,0" TextWrapping="Wrap" Text="Review date: " VerticalAlignment="Top" Width="115"/>
+        <TextBox x:Name="TxtReviewDate" Grid.Column="2" HorizontalAlignment="Left" Height="76" Margin="100.634,231,0,0" TextWrapping="Wrap" Text="Review date: " VerticalAlignment="Top" Width="115"/>
         <TextBlock x:Name="TxtReleased" HorizontalAlignment="Left" Height="22" Margin="188,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" Grid.ColumnSpan="2"><Run Text="R"/><Run Text="elease Date"/><Run Text=": "/></TextBlock>
         <TextBlock x:Name="txtSales" HorizontalAlignment="Left" Height="22" Margin="188,231,0,0" TextWrapping="Wrap" Text="Total Sales:" VerticalAlignment="Top" Width="240" Grid.ColumnSpan="2"/>
-        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="25" Margin="221.634,282,0,0" TextWrapping="Wrap" Text="Score:" VerticalAlignment="Top" Width="78"/>
+        <TextBox x:Name="TxtScore" Grid.Column="2" HorizontalAlignment="Left" Height="87" Margin="221.634,220,0,0" TextWrapping="Wrap" Text="Score:" VerticalAlignment="Top" Width="78"/>
 
     </Grid>
 </Window>

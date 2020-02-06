@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace sem2_assignment
 {
-    class Reviews
+    class Review
     {
         #region props
         public string Name { get; set; }
         public DateTime ReviewDate { get; set; }
-        public string Review { get; set; }
+        public string Reviews { get; set; }
 
         public int score { get; set; }
         #endregion props
         #region ctor
+
+
         #endregion ctor
         #region methods
 
