@@ -4,31 +4,82 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sem2_assignment"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="400" Width="824" Loaded="Window_Loaded" ResizeMode="NoResize" WindowStyle="None" Background="#FFE8E8E8">
     <Grid>
-        <Grid.Effect>
-            <DropShadowEffect Direction="275" BlurRadius="20" Opacity="0.5"/>
-        </Grid.Effect>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="407*"/>
-            <ColumnDefinition Width="77*"/>
-            <ColumnDefinition Width="309*"/>
+            <ColumnDefinition Width="195*"/>
+            <ColumnDefinition Width="629*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="LbxGames" HorizontalAlignment="Left" Height="290" Margin="10,121,0,0" VerticalAlignment="Top" Width="173" SelectionChanged="ListBox_SelectionChanged"/>
-        <ComboBox x:Name="CbxGenre" HorizontalAlignment="Left" Height="22" Margin="10,94,0,0" VerticalAlignment="Top" Width="173" SelectedIndex="0"/>
-        <TextBlock HorizontalAlignment="Left" Height="17" Margin="355,10,0,0" TextWrapping="Wrap" Text="Game reviews" VerticalAlignment="Top" Width="78" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="TxtDescription" HorizontalAlignment="Left" Height="129" Margin="188,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" TextChanged="TextBox_TextChanged" Grid.ColumnSpan="2"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,78,0,0" TextWrapping="Wrap" Text="Game Genre" VerticalAlignment="Top" Width="66"/>
-        <TextBox x:Name="txtReviewer" HorizontalAlignment="Left" Height="75" Margin="25.667,231,0,0" TextWrapping="Wrap" Text="Review by:" VerticalAlignment="Top" Width="147" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="202,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="&lt; eg fps, rpg sports ect"/><LineBreak/><Run/></TextBlock>
-        <Image x:Name="ImgCover" Grid.Column="2" HorizontalAlignment="Left" Height="103" Margin="118.634,43,0,0" VerticalAlignment="Top" Width="181" Loaded="ImgCover_Loaded"/>
-        <TextBox x:Name="txtReview" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="99" Margin="25.667,312,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" Grid.Column="1"/>
-        <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="5" Margin="136,294,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="0"/>
-        <TextBox x:Name="TxtReviewDate" Grid.Column="2" HorizontalAlignment="Left" Height="76" Margin="100.634,231,0,0" TextWrapping="Wrap" Text="Review date: " VerticalAlignment="Top" Width="115"/>
-        <TextBlock x:Name="TxtReleased" HorizontalAlignment="Left" Height="22" Margin="188,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" Grid.ColumnSpan="2"><Run Text="R"/><Run Text="elease Date"/><Run Text=": "/></TextBlock>
-        <TextBlock x:Name="txtSales" HorizontalAlignment="Left" Height="22" Margin="188,231,0,0" TextWrapping="Wrap" Text="Total Sales:" VerticalAlignment="Top" Width="240" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="TxtScore" Grid.Column="2" HorizontalAlignment="Left" Height="87" Margin="221.634,220,0,0" TextWrapping="Wrap" Text="Score:" VerticalAlignment="Top" Width="78"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="37*"/>
+        </Grid.RowDefinitions>
+
+        <Grid  Margin="0,0,5.667,0" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="370.666666666667"/>
+            </Grid.RowDefinitions>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFC3C3C3" Offset="1"/>
+                    <GradientStop Color="#FFE0E0E0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
+            </Grid.Effect>
+
+            <Grid Background="#FFA46FE4" Margin="0,-11,-0.333,0">
+                <TextBlock Text="Game Reviews" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Sitka Text" Foreground="#FF332840" FontSize="18"/>
+            </Grid>
+            <StackPanel Grid.Row="1">
+                <ComboBox x:Name="CbxGenre" Margin="10,5,9.667,5" BorderBrush="Black" SelectionChanged="ComboBox_SelectionChanged" Foreground="Black" Background="#FFE8E8E8" FontWeight="Bold" SelectedIndex="0"/>
+                <ListBox x:Name="LbxGames" Margin="10,10,9.667,10" Height="200" Background="#FFE8E8E8" Foreground="Black" BorderBrush="Black" FontWeight="Bold" FontSize="10" SelectionChanged="LbxGames_SelectionChanged" />
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.ColumnSpan="2" Background="#FF8522BD" Margin="0,0,0,1" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.015"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="{x:Null}">
+                <Button Width="20" Height="20">
+                    <materialDesign:PackIcon Kind="Dagger"/>
+                </Button>
+                <Button Width="20" Height="20">
+                    <materialDesign:PackIcon Kind="Fullscreen"/>
+                </Button>
+                <Button x:Name="ButtonClose" Width="20" Height="20" Click="ButtonClose_Click">
+                    <materialDesign:PackIcon Kind="Power"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <TextBox x:Name="TxtDescription" Grid.Column="1" HorizontalAlignment="Left" Height="203" Margin="19.333,141,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Background="#FFD5D5D5"/>
+        <TextBox x:Name="TxtReleased" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="19.333,114,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Background="#FFD5D5D5"/>
+        <TextBox x:Name="TxtSales" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="19.333,87,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Background="#FFD5D5D5"/>
+        <Label Content="Game information" Grid.Column="1" HorizontalAlignment="Left" Height="27" Margin="19.333,55,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="161" FontWeight="Bold"/>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Height="257" Margin="218.333,87,0,0" Grid.Row="1" VerticalAlignment="Top" Width="170"/>
+        <TextBox x:Name="TxtReview" Grid.Column="1" HorizontalAlignment="Left" Height="203" Margin="393.333,141,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" Background="#FFD5D5D5"/>
+        <TextBox x:Name="TxtReviewDate" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="393.333,114,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Background="#FFD5D5D5"/>
+        <TextBox x:Name="TxtReviewer" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="393.333,87,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" Background="#FFD5D5D5"/>
+        <TextBox x:Name="TxtScore" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="558.333,114,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="61" Background="#FFD5D5D5"/>
+        <Label Content="Reviews" Grid.Column="1" HorizontalAlignment="Left" Height="27" Margin="393.333,55,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="226" FontWeight="Bold"/>
+
+
 
     </Grid>
 </Window>

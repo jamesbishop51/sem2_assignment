@@ -24,10 +24,7 @@ namespace sem2_assignment
 
 
 
-        //these are props that i tried to use for the cover images
-        //public System.Windows.Media.ImageSource Cover { get; set; }
-        //public BitmapImage Cover { get; set; }
-        //public string[] Cover { get; set; }
+        
 
         #endregion props
         public Game()
