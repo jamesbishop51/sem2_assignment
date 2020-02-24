@@ -78,7 +78,7 @@
         <TextBox x:Name="TxtScore" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="558.333,114,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="61" Background="#FFD5D5D5"/>
         <Label Content="Reviews" Grid.Column="1" HorizontalAlignment="Left" Height="27" Margin="393.333,55,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="226" FontWeight="Bold"/>
         <Image HorizontalAlignment="Left" Height="100" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
-        <Image x:Name="ImgCover" Grid.Column="1" HorizontalAlignment="Left" Height="230" Margin="231.667,113.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="170"/>
+        <Image x:Name="ImgCover" Grid.Column="1" HorizontalAlignment="Left" Height="230" Margin="218.667,113.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="170"/>
 
 
 
