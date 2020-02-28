@@ -24,7 +24,7 @@ namespace sem2_assignment
 
 
 
-        
+
 
         #endregion props
         public Game()

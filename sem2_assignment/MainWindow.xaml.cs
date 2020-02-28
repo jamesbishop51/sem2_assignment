@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Dropbox.Api;
 
 namespace sem2_assignment
 {
@@ -30,7 +31,6 @@ namespace sem2_assignment
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // not working yet
             string[] genres = { "All", "Fps", "Looter", "Rts", "Survival", "Rpg" };
             CbxGenre.ItemsSource = genres;
 
