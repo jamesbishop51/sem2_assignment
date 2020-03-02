@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Amazon;
+using Amazon.S3.IO;
+using Amazon.S3.Model;
+
 
 namespace sem2_assignment
 {
@@ -36,6 +40,7 @@ namespace sem2_assignment
             //puts the games into an array
             AllGames = GetGames();
 
+
             //sorts the games(not sure how this will work when i make the change to pulling the data from a file.)
             Array.Sort(AllGames);
 
@@ -51,24 +56,24 @@ namespace sem2_assignment
             // using this method to create the games to get everything else working before i make the switch and test out using a file to get the data everything
             // games
             //fps games
-            FpsGame f1 = new FpsGame() { Name = "Call of Duty: Modern Warfare ", Released = new DateTime(2019,8,23), Sales = 15000000, Description = "Call of Duty: Modern Warfare is a first-person shooter video game developed by Infinity Ward and published by Activision. ... The game's Special Ops mode features cooperative play missions that follow up the campaign's story. The multiplayer mode supports cross-platform multiplayer for the first time in the series.", GameImg = "cod.jpg" };
-            FpsGame f2 = new FpsGame() { Name = "BattleField 5", Released = new DateTime(2018,11 ,9), Sales = 7300000, Description = "The latest entry in an iconic series that dates back to 2002, Battlefield 5 is a celebration of the chaos and the drama of combined arms warfare. At its core is the concept of the squad, a small group of players that can cooperate and coordinate together to achieve goals in-game.", GameImg = "bf5.jpg" };
+            FpsGame f1 = new FpsGame() { Name = "Call of Duty: Modern Warfare ", Released = new DateTime(2019,8,23), Sales = 15000000, Description = "Call of Duty: Modern Warfare is a first-person shooter video game developed by Infinity Ward and published by Activision. ... The game's Special Ops mode features cooperative play missions that follow up the campaign's story. The multiplayer mode supports cross-platform multiplayer for the first time in the series.", GameImg = $"https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/cod.jpg"};
+            FpsGame f2 = new FpsGame() { Name = "BattleField 5", Released = new DateTime(2018,11 ,9), Sales = 7300000, Description = "The latest entry in an iconic series that dates back to 2002, Battlefield 5 is a celebration of the chaos and the drama of combined arms warfare. At its core is the concept of the squad, a small group of players that can cooperate and coordinate together to achieve goals in-game.", GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/bf5.jpg" };
 
             //looter games
-            LooterGame l1 = new LooterGame() { Name = "Borderlands 3", Released = new DateTime(2019, 9, 13), Sales = 20000000, Description = " Borderlands 3 is an action role-playing first-person shooter video game developed by Gearbox Software and published by 2K Games. It is the sequel to 2012's Borderlands 2, and the fourth main entry in the Borderlands series. ", GameImg = "borderlands3jpg.jpg" };
-            LooterGame l2 = new LooterGame() { Name = "Tom Clancy's the division 2", Released = new DateTime(2019,3,13), Sales = 45000000, Description = "Tom Clancy's The Division 2 is a shooter RPG with campaign, co-op, and PvP modes that offers more variety in missions and challenges, new progression systems with unique twists and surprises, and fresh innovations that offer new ways to play.", GameImg = "division2.jpg" };
+            LooterGame l1 = new LooterGame() { Name = "Borderlands 3", Released = new DateTime(2019, 9, 13), Sales = 20000000, Description = " Borderlands 3 is an action role-playing first-person shooter video game developed by Gearbox Software and published by 2K Games. It is the sequel to 2012's Borderlands 2, and the fourth main entry in the Borderlands series. ", GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/borderlands3jpg.jpg" };
+            LooterGame l2 = new LooterGame() { Name = "Tom Clancy's the division 2", Released = new DateTime(2019,3,13), Sales = 45000000, Description = "Tom Clancy's The Division 2 is a shooter RPG with campaign, co-op, and PvP modes that offers more variety in missions and challenges, new progression systems with unique twists and surprises, and fresh innovations that offer new ways to play.", GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/division2.jpg" };
 
             //Rts games
-            RtsGame r1 = new RtsGame() { Name = "Supreme commander forged alliance", Released = new DateTime(2007,11,6), Sales = 2000000, Description = " Search ResultsFeatured snippet from the webSupreme Commander: Forged Alliance is a standalone real - time strategy video game expansion to Supreme Commander, and was released in November 2007, developed by Gas Powered Games and published by THQ, and the second title in the franchise. ", GameImg = "scfa.jpg"};
-            RtsGame r2 = new RtsGame() { Name = "Company of Heroes 2", Released = new DateTime(2013,6,25), Sales = 4000000, Description = "Company of Heroes 2 is a real-time strategy video game developed by Relic Entertainment and published by Sega for Microsoft Windows, OS X, and Linux. It is the sequel to the 2006 game Company of Heroes.", GameImg = "heroes2.jpg" };
+            RtsGame r1 = new RtsGame() { Name = "Supreme commander forged alliance", Released = new DateTime(2007,11,6), Sales = 2000000, Description = " Search ResultsFeatured snippet from the webSupreme Commander: Forged Alliance is a standalone real - time strategy video game expansion to Supreme Commander, and was released in November 2007, developed by Gas Powered Games and published by THQ, and the second title in the franchise. ", GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/scfa.jpg" };
+            RtsGame r2 = new RtsGame() { Name = "Company of Heroes 2", Released = new DateTime(2013,6,25), Sales = 4000000, Description = "Company of Heroes 2 is a real-time strategy video game developed by Relic Entertainment and published by Sega for Microsoft Windows, OS X, and Linux. It is the sequel to the 2006 game Company of Heroes.", GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/heroes2.jpg" };
 
             ////Survival games
-            SurvivalGames s1 = new SurvivalGames() { Name = "No man's sky", Released = new DateTime(2016,8,9), Sales = 3000000, Description = "No Man's Sky is an action-adventure survival game played from a first or third person perspective that allows players to engage in four principal activities: exploration, survival, combat, and trading.", GameImg = "nms.jpg" };
-            SurvivalGames s2 = new SurvivalGames() { Name = "Minecraft", Released = new DateTime(2009,5,17), Sales = 112000000, Description = "Minecraft is a sandbox video game created by Swedish developer Markus Persson, released by Mojang in 2011 and purchased by Microsoft in 2014. It is the single best-selling video game of all time, selling over 180 million copies across all platforms by late 2019, with over 112 million monthly active players.", GameImg = "minecraft.jpg" };
+            SurvivalGames s1 = new SurvivalGames() { Name = "No man's sky", Released = new DateTime(2016,8,9), Sales = 3000000, Description = "No Man's Sky is an action-adventure survival game played from a first or third person perspective that allows players to engage in four principal activities: exploration, survival, combat, and trading.", GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/nms.jpg" };
+            SurvivalGames s2 = new SurvivalGames() { Name = "Minecraft", Released = new DateTime(2009,5,17), Sales = 112000000, Description = "Minecraft is a sandbox video game created by Swedish developer Markus Persson, released by Mojang in 2011 and purchased by Microsoft in 2014. It is the single best-selling video game of all time, selling over 180 million copies across all platforms by late 2019, with over 112 million monthly active players.", GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/minecraft.jpg" };
 
             //rpg games
-            RpgGame rp1 = new RpgGame() { Name = "Fallout 4", Released = new DateTime(2015,11,11), Sales = 14910000, Description = "Fallout 4 is an action role-playing game developed by Bethesda Game Studios and published by Bethesda Softworks. ... The player explores the game's dilapidated world, completes various quests, helps out factions, and acquires experience points to level up and increase the abilities of their character.",GameImg = "fallout4.jpg" };
-            RpgGame rp2 = new RpgGame() { Name = "Skyrim", Released = new DateTime(2011,11,11), Sales = 30000000, Description = "The Elder Scrolls V: Skyrim is an action role-playing game, playable from either a first or third-person perspective. The player may freely roam over the land of Skyrim which is an open world environment consisting of wilderness expanses, dungeons, cities, towns, fortresses, and villages. ", GameImg = "skyrim.jpg" };
+            RpgGame rp1 = new RpgGame() { Name = "Fallout 4", Released = new DateTime(2015,11,11), Sales = 14910000, Description = "Fallout 4 is an action role-playing game developed by Bethesda Game Studios and published by Bethesda Softworks. ... The player explores the game's dilapidated world, completes various quests, helps out factions, and acquires experience points to level up and increase the abilities of their character.",GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/fallout4.jpg" };
+            RpgGame rp2 = new RpgGame() { Name = "Skyrim", Released = new DateTime(2011,11,11), Sales = 30000000, Description = "The Elder Scrolls V: Skyrim is an action role-playing game, playable from either a first or third-person perspective. The player may freely roam over the land of Skyrim which is an open world environment consisting of wilderness expanses, dungeons, cities, towns, fortresses, and villages. ", GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/skyrim.jpg" };
 
             #region reviews
             //// fps reviews
@@ -219,7 +224,10 @@ namespace sem2_assignment
                 TxtReviewDate.Text = "review date: " + selectedgame.review[0].ReviewDate;
                 TxtReviewer.Text = "Reviewed By: " + selectedgame.review[0].Name;
                 TxtScore.Text = "Score: " + selectedgame.review[0].score;
-                ImgCover.Source = new BitmapImage(new Uri("\\img\\" + selectedgame.GameImg, UriKind.Relative));
+                ImgCover.Source = new BitmapImage(new Uri(selectedgame.GameImg, UriKind.RelativeOrAbsolute));
+
+  
+
             }
         }
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
