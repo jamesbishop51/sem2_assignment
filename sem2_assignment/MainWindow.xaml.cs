@@ -56,11 +56,11 @@ namespace sem2_assignment
             // using this method to create the games to get everything else working before i make the switch and test out using a file to get the data everything
             // games
             //fps games
-            FpsGame f1 = new FpsGame() { Name = "Call of Duty: Modern Warfare ", Released = new DateTime(2019,8,23), Sales = 15000000, Description = "Call of Duty: Modern Warfare is a first-person shooter video game developed by Infinity Ward and published by Activision. ... The game's Special Ops mode features cooperative play missions that follow up the campaign's story. The multiplayer mode supports cross-platform multiplayer for the first time in the series.", GameImg = $"https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/cod.jpg"};
+            FpsGame f1 = new FpsGame() { Name = "Call of Duty: Modern Warfare ", Released = new DateTime(2019,8,23), Sales = 15000000, Description = "Call of Duty: Modern Warfare is a first-person shooter video game developed by Infinity Ward and published by Activision. ... The game's Special Ops mode features cooperative play missions that follow up the campaign's story. The multiplayer mode supports cross-platform multiplayer for the first time in the series.", GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/cod.jpg"};
             FpsGame f2 = new FpsGame() { Name = "BattleField 5", Released = new DateTime(2018,11 ,9), Sales = 7300000, Description = "The latest entry in an iconic series that dates back to 2002, Battlefield 5 is a celebration of the chaos and the drama of combined arms warfare. At its core is the concept of the squad, a small group of players that can cooperate and coordinate together to achieve goals in-game.", GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/bf5.jpg" };
 
             //looter games
-            LooterGame l1 = new LooterGame() { Name = "Borderlands 3", Released = new DateTime(2019, 9, 13), Sales = 20000000, Description = " Borderlands 3 is an action role-playing first-person shooter video game developed by Gearbox Software and published by 2K Games. It is the sequel to 2012's Borderlands 2, and the fourth main entry in the Borderlands series. ", GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/borderlands3jpg.jpg" };
+            LooterGame l1 = new LooterGame() { Name = "Borderlands 3", Released = new DateTime(2019, 9, 13), Sales = 20000000, Description = " Borderlands 3 is an action role-playing first-person shooter video game developed by Gearbox Software and published by 2K Games. It is the sequel to 2012's Borderlands 2, and the fourth main entry in the Borderlands series. ", GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/borderlands3.jpg" };
             LooterGame l2 = new LooterGame() { Name = "Tom Clancy's the division 2", Released = new DateTime(2019,3,13), Sales = 45000000, Description = "Tom Clancy's The Division 2 is a shooter RPG with campaign, co-op, and PvP modes that offers more variety in missions and challenges, new progression systems with unique twists and surprises, and fresh innovations that offer new ways to play.", GameImg = "https://visual-studio-images.s3.eu-west-1.amazonaws.com/img/division2.jpg" };
 
             //Rts games
@@ -226,7 +226,7 @@ namespace sem2_assignment
                 TxtScore.Text = "Score: " + selectedgame.review[0].score;
                 ImgCover.Source = new BitmapImage(new Uri(selectedgame.GameImg, UriKind.RelativeOrAbsolute));
 
-  
+
 
             }
         }
