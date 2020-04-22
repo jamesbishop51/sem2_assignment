@@ -26,6 +26,8 @@ namespace sem2_assignment
     public partial class MainWindow : Window
     {
 
+        GameData db = new GameData();
+
         Game[] AllGames;
         public MainWindow()
         {
@@ -38,14 +40,19 @@ namespace sem2_assignment
             CbxGenre.ItemsSource = genres;
 
             //puts the games into an array
-            AllGames = GetGames();
+            //AllGames = GetGames();
 
 
             //sorts the games(not sure how this will work when i make the change to pulling the data from a file.)
-            Array.Sort(AllGames);
+           //Array.Sort(AllGames);
 
             //sets the source for the list box to the games
-            LbxGames.ItemsSource = AllGames;
+            //LbxGames.ItemsSource = AllGames;
+
+            var query = from g in db.Games
+                        select g.Name;
+
+            LbxGames.ItemsSource = query.ToList();
 
 
         }
