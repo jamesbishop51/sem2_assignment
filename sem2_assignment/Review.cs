@@ -9,6 +9,7 @@ namespace sem2_assignment
     class Review
     {
         #region props
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime ReviewDate { get; set; }
         public string Reviews { get; set; }

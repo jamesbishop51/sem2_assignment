@@ -12,6 +12,7 @@ namespace sem2_assignment
     abstract class Game : IComparable
     {
         #region props
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime Released { get; set; }
         public double Sales { get; set; }
