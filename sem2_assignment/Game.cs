@@ -6,20 +6,19 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Data.Entity;
 
 namespace sem2_assignment
 {
-    abstract class Game : IComparable
+    public abstract class Game : IComparable
     {
         #region props
-        public int Id { get; set; }
+        public int GameId { get; set; }
         public string Name { get; set; }
         public DateTime Released { get; set; }
         public double Sales { get; set; }
         public string Description { get; set; }
-
-        public Review[] review { get; set; }
-
+        public virtual Review[] review { get; set; }
         public string GameImg { get; set; }
 
 
@@ -54,25 +53,32 @@ namespace sem2_assignment
         #endregion methods
     }
     #region AbstractClasses
-    class FpsGame : Game
+    public class FpsGame : Game
     {
 
     }
-    class LooterGame : Game
+    public class LooterGame : Game
     {
 
     }
-    class RtsGame : Game
+    public class RtsGame : Game
     {
 
     }
-    class SurvivalGames : Game
+    public class SurvivalGames : Game
     {
 
     }
-    class RpgGame : Game
+    public class RpgGame : Game
     {
 
     }
     #endregion AbstractClasses
+    public class GameData : DbContext
+    {
+        public GameData() : base("MyGameData") { }
+
+        public DbSet<Game> Games { get; set; }
+        public DbSet<Review> reviews { get; set; }
+    }
 }
