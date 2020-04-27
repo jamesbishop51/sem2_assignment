@@ -10,7 +10,7 @@ using System.Data.Entity;
 
 namespace sem2_assignment
 {
-    public abstract class Game : IComparable
+    public class Game : IComparable
     {
         #region props
         public int GameId { get; set; }
@@ -20,6 +20,8 @@ namespace sem2_assignment
         public string Description { get; set; }
         public virtual Review[] review { get; set; }
         public string GameImg { get; set; }
+
+        public string Genre { get; set; }
 
 
 
@@ -52,28 +54,7 @@ namespace sem2_assignment
         }
         #endregion methods
     }
-    #region AbstractClasses
-    public class FpsGame : Game
-    {
-
-    }
-    public class LooterGame : Game
-    {
-
-    }
-    public class RtsGame : Game
-    {
-
-    }
-    public class SurvivalGames : Game
-    {
-
-    }
-    public class RpgGame : Game
-    {
-
-    }
-    #endregion AbstractClasses
+   
     public class GameData : DbContext
     {
         public GameData() : base("MyGameData") { }
