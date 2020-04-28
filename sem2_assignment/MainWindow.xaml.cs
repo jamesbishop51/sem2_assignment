@@ -50,11 +50,7 @@ namespace sem2_assignment
             Allgames = query.ToList();
             LbxGames.ItemsSource = Allgames;
 
-            var query1 = from r in db.reviews
-                         join g in db.reviews on r.GameId equals g.GameId
-                         select r;
 
-            Reviews = query1.ToList();
         }
 
 
@@ -153,9 +149,9 @@ namespace sem2_assignment
                 string reviewer = "Reviewed By: " + review.Name;
                 TxtReviewer.Text = reviewer;
 
-                string score = "review Score: " + review.score;
+                string score = "Score: " + review.score;
                 TxtScore.Text = score;
-               
+
 
 
 
