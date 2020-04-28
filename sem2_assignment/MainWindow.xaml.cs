@@ -27,9 +27,10 @@ namespace sem2_assignment
     {
 
         GameData db = new GameData();
+        List<Game> Allgames = new List<Game>();
+        List<Review> Reviews = new List<Review>();
 
 
-        //Game[] AllGames;
         public MainWindow()
         {
             InitializeComponent();
@@ -38,32 +39,158 @@ namespace sem2_assignment
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // sets the source for the combo box for the genres
-            string[] genres = { "All", "Fps", "Looter", "Rts", "Survival", "Rpg" };
+            string[] genres = { "all", "fps", "looter", "rts", "survival", "rpg" };
             CbxGenre.ItemsSource = genres;
-
-
-            #region oldcode
-            //puts the games into an array
-            //AllGames = GetGames();
-
-
-            //sorts the games(not sure how this will work when i make the change to pulling the data from a file.)
-            //Array.Sort(AllGames);
-
-            //sets the source for the list box to the games
-            //LbxGames.ItemsSource = AllGames;
-            #endregion oldcode
 
             //sets the source for the list box to the games
             var query = from g in db.Games
-                        select g.Name;
 
-            LbxGames.ItemsSource = query.ToList();
+                        select g;
 
+            Allgames = query.ToList();
+            LbxGames.ItemsSource = Allgames;
+
+            var query1 = from r in db.reviews
+                         join g in db.reviews on r.GameId equals g.GameId
+                         select r;
+
+            Reviews = query1.ToList();
+        }
+
+
+        //pressing the power button will shut down the program
+        private void ButtonClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        // filters the games based on the list box selection.
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (CbxGenre.SelectedItem != null)
+            {
+                // gets the selection.
+                string selectedGenre = CbxGenre.SelectedItem as string;
+
+
+
+                switch (selectedGenre)
+                {
+                    case "all":
+                        LbxGames.ItemsSource = null;
+                        LbxGames.ItemsSource = Allgames;
+                        break;
+
+                    case "fps":
+
+                        LbxGames.ItemsSource = null;
+                        LbxGames.ItemsSource = Allgames.Where(g => g.Genre.Equals("fps"));
+                        break;
+
+                    case "looter":
+
+                        LbxGames.ItemsSource = null;
+                        LbxGames.ItemsSource = Allgames.Where(g => g.Genre.Equals("looter"));
+                        break;
+
+                    case "rts":
+
+                        LbxGames.ItemsSource = null;
+                        LbxGames.ItemsSource = Allgames.Where(g => g.Genre.Equals("rts"));
+                        break;
+
+                    case "survival":
+
+                        LbxGames.ItemsSource = null;
+                        LbxGames.ItemsSource = Allgames.Where(g => g.Genre.Equals("survival"));
+                        break;
+
+                    case "rpg":
+
+                        LbxGames.ItemsSource = null;
+                        LbxGames.ItemsSource = Allgames.Where(g => g.Genre.Equals("rpg"));
+                        break;
+
+
+                }
+            }
 
         }
 
+        //displays all the information based on the selected game.
+        private void LbxGames_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //gets the selected game
+            Game selectedGame = LbxGames.SelectedItem as Game;
+
+            // null check
+            if (selectedGame != null)
+            {
+
+
+                string sales = $"Total Sales: {selectedGame.Sales}";
+                TxtSales.Text = sales;
+
+                string released = "Release Date: " + string.Format("{0:dd/MM/yyyy}", selectedGame.Released);
+                TxtReleased.Text = released;
+
+                TxtDescription.Text = selectedGame.Description;
+
+                ImgCover.Source = new BitmapImage(new Uri(selectedGame.GameImg, UriKind.RelativeOrAbsolute));
+
+                //gets the information for the review by matching the games id in the review table with the selected games id
+                var query = from r in db.reviews
+                            where r.GameId == selectedGame.GameId
+                            select r;
+
+                var review = query.FirstOrDefault();
+
+                TxtReview.Text = review.Reviews;
+
+                string reviewDate = "Review Date: " + string.Format("{0:dd/MM/yyyy}", review.ReviewDate);
+                TxtReviewDate.Text = reviewDate;
+
+                string reviewer = "Reviewed By: " + review.Name;
+                TxtReviewer.Text = reviewer;
+
+                string score = "review Score: " + review.score;
+                TxtScore.Text = score;
+               
+
+
+
+
+            }
+        }
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        private void TxtDescription_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
+        //this was code that was being used before the switch to a database
         #region oldcode
+
+        //this was the code that was used to get everything working before making the switch to pulling the information from the database.
+
+        //    //puts the games into an array
+        //    AllGames = GetGames();
+
+
+        //    //sorts the games(not sure how this will work when i make the change to pulling the data from a file.)
+        //    Array.Sort(AllGames);
+
+        //    //sets the source for the list box to the games
+        //    LbxGames.ItemsSource = AllGames;
+
+
+        //this was the way the i created the games before pulling the information from the database.
+        #region creating the games
         // creating the games.
         //private Game[] GetGames()
         //{
@@ -131,140 +258,132 @@ namespace sem2_assignment
 
 
 
-        //    Game[] GamesCreated = {/* f1, f2, l1, l2, r1, r2, s1, s2, rp1, rp2 */};
+        //    Game[] GamesCreated = { f1, f2, l1, l2, r1, r2, s1, s2, rp1, rp2 };
         //    return GamesCreated;
         //}
+        #endregion creating the games
+
+        //this was how i was filtering the games via the combo box
+        #region combo box filtering
+
+        //         if (CbxGenre.SelectedItem != null)
+        //            {
+        //                 gets the selection.
+        //                string selectedGenre = CbxGenre.SelectedItem as string;
+
+        //        Game[] filteredgames = new Game[4];
+        //        int counter = 0;
+
+        //                switch (selectedGenre)
+        //                {
+        //                    case "all":
+        //                        LbxGames.ItemsSource = null;
+        //                        LbxGames.ItemsSource = Allgames;
+        //                        break;
+
+        //                    case "fps":
+
+        //                        foreach (Game currentgame in AllGames)
+        //                        {
+        //                            if (currentgame is FpsGame)
+        //                            {
+        //                                filteredgames[counter] = currentgame;
+        //                                counter++;
+        //                            }
+        //}
+        //LbxGames.ItemsSource = null;
+        //                        LbxGames.ItemsSource = Allgames.Where(g => g.Genre.Equals("fps"));
+        //                        break;
+
+        //                    case "looter":
+        //                        foreach (Game currentgame in AllGames)
+        //                        {
+        //                            if (currentgame is LooterGame)
+        //                            {
+        //                                filteredgames[counter] = currentgame;
+        //                                counter++;
+        //                            }
+        //                        }
+        //                        LbxGames.ItemsSource = null;
+        //                        LbxGames.ItemsSource = Allgames.Where(g => g.Genre.Equals("looter"));
+        //                        break;
+
+        //                    case "rts":
+        //                        foreach (Game currentgame in AllGames)
+        //                        {
+        //                            if (currentgame is RtsGame)
+        //                            {
+        //                                filteredgames[counter] = currentgame;
+        //                                counter++;
+        //                            }
+        //                        }
+        //                        LbxGames.ItemsSource = null;
+        //                        LbxGames.ItemsSource = Allgames.Where(g => g.Genre.Equals("rts"));
+        //                        break;
+
+        //                    case "survival":
+        //                        foreach (Game currentgame in AllGames)
+        //                        {
+        //                            if (currentgame is SurvivalGames)
+        //                            {
+        //                                filteredgames[counter] = currentgame;
+        //                                counter++;
+        //                            }
+        //                        }
+        //                        LbxGames.ItemsSource = null;
+        //                        LbxGames.ItemsSource = Allgames.Where(g => g.Genre.Equals("survival"));
+        //                        break;
+
+        //                    case "rpg":
+        //                        foreach (Game currentgame in AllGames)
+        //                        {
+        //                            if (currentgame is RpgGame)
+        //                            {
+        //                                filteredgames[counter] = currentgame;
+        //                                counter++;
+
+        //                            }
+        //                        }
+        //                        LbxGames.ItemsSource = null;
+        //                        LbxGames.ItemsSource = Allgames.Where(g => g.Genre.Equals("rpg"));
+        //                        break;
+
+
+        //                }
+        //}
+
+
+        #endregion combo box filtering
+
+        //this is how i was setting the source for the information about the games and the reviews depending on what game was clicked
+        #region selection change
+
+        //Game selectedGame = LbxGames.SelectedItem as Game;
+
+        //    // null check
+        //    if (selectedGame != null)
+        //    {
+
+        //TxtSales.Text = "Total Sales: " + selectedgame.Sales;
+        //TxtReleased.Text = "Release Date: " + string.Format("{0:dd/MM/yyyy}", selectedgame.Released);
+        //TxtDescription.Text = selectedgame.Description;
+        //TxtReview.Text = selectedgame.review[0].Reviews;
+        //TxtReviewDate.Text = "review date: " + selectedgame.review[0].ReviewDate;
+        //TxtReviewer.Text = "Reviewed By: " + selectedgame.review[0].Name;
+        //TxtScore.Text = "Score: " + selectedgame.review[0].score;
+        //ImgCover.Source = new BitmapImage(new Uri(selectedgame.GameImg, UriKind.RelativeOrAbsolute));
+
+
+
+        //}
+
+
+
+        #endregion selection change
+
+
+
         #endregion oldcode
-
-        //pressing the power button will shut down the program
-        private void ButtonClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-        // filters the games based on the list box selection.
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            //if (CbxGenre.SelectedItem != null)
-            //{
-            //    // gets the selection.
-            //    string selectedGenre = CbxGenre.SelectedItem as string;
-
-            //    Game[] filteredgames = new Game[4];
-            //    int counter = 0;
-
-            //    switch (selectedGenre)
-            //    {
-            //        case "All":
-            //            //LbxGames.ItemsSource = GetGames();
-            //            break;
-
-            //        case "Fps":
-            //            foreach (Game currentgame in AllGames)
-            //            {
-            //                if (currentgame is FpsGame)
-            //                {
-            //                    filteredgames[counter] = currentgame;
-            //                    counter++;
-            //                }
-            //            }
-            //            LbxGames.ItemsSource = filteredgames;
-            //            break;
-
-            //        case "Looter":
-            //            foreach (Game currentgame in AllGames)
-            //            {
-            //                if (currentgame is LooterGame)
-            //                {
-            //                    filteredgames[counter] = currentgame;
-            //                    counter++;
-            //                }
-            //            }
-            //            LbxGames.ItemsSource = filteredgames;
-            //            break;
-
-            //        case "Rts":
-            //            foreach (Game currentgame in AllGames)
-            //            {
-            //                if (currentgame is RtsGame)
-            //                {
-            //                    filteredgames[counter] = currentgame;
-            //                    counter++;
-            //                }
-            //            }
-            //            LbxGames.ItemsSource = filteredgames;
-            //            break;
-
-            //        case "Survival":
-            //            foreach (Game currentgame in AllGames)
-            //            {
-            //                if (currentgame is SurvivalGames)
-            //                {
-            //                    filteredgames[counter] = currentgame;
-            //                    counter++;
-            //                }
-            //            }
-            //            LbxGames.ItemsSource = filteredgames;
-            //            break;
-
-            //        case "Rpg":
-            //            foreach (Game currentgame in AllGames)
-            //            {
-            //                if (currentgame is RpgGame)
-            //                {
-            //                    filteredgames[counter] = currentgame;
-            //                    counter++;
-
-            //                }
-            //            }
-            //            LbxGames.ItemsSource = filteredgames;
-            //            break;
-
-
-            //    }
-            //}
-
-        }
-
-        //displays all the information based on the selected game.
-        private void LbxGames_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //gets the selected game
-            Game selectedGame = LbxGames.SelectedItem as Game;
-
-            // null check
-            if (LbxGames.SelectedItem != null)
-            {
-
-
-                string sales = $"Total Sales: {selectedGame.Sales}";
-                TxtSales.Text = sales;
-
-                string released = "Release Date: " + string.Format("{0:dd/MM/yyyy}", selectedGame.Released);
-                TxtReleased.Text = released
-
-
-                //TxtSales.Text = "Total Sales: " + selectedgame.Sales;
-                //TxtReleased.Text = "Release Date: " + string.Format("{0:dd/MM/yyyy}", selectedgame.Released);
-                //TxtDescription.Text = selectedgame.Description;
-                //TxtReview.Text = selectedgame.review[0].Reviews;
-                //TxtReviewDate.Text = "review date: " + selectedgame.review[0].ReviewDate;
-                //TxtReviewer.Text = "Reviewed By: " + selectedgame.review[0].Name;
-                //TxtScore.Text = "Score: " + selectedgame.review[0].score;
-                //ImgCover.Source = new BitmapImage(new Uri(selectedgame.GameImg, UriKind.RelativeOrAbsolute));
-
-
-
-            }
-        }
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-        private void TxtDescription_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
 
